@@ -34,3 +34,5 @@ terraform-providers-schema/
 terraform.tfplan
 terraform.tfstate
 
+vprofilekey
+vprofilekey.pub
