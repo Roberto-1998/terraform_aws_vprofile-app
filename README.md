@@ -4,9 +4,9 @@ This repository contains Terraform code to provision the **VProfile application 
 
 ---
 
-## 📐 Arquitectura
+## 📐 Arquitecture
 
-![Arquitectura](architecture/terraform_aws_vprofile-app.drawio.png)
+![Architecture](architecture/terraform_aws_vprofile-app.drawio.png)
 
 ---
 
@@ -32,7 +32,7 @@ This repository contains Terraform code to provision the **VProfile application 
 ├── terraform.tfvars             # Variable values
 ├── variables.tf                 # Variable definitions
 ├── vpc.tf                       # VPC and subnet configurations
-├── vprofilekey / .pub           # SSH key pair (⚠️ Consider removing private key from repo)
+├── vprofilekey / .pub           # SSH key pair 
 ```
 
 ---
