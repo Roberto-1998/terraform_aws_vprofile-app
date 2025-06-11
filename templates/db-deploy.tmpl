@@ -1,4 +1,25 @@
-sudo apt update
-sudo apt install git mysql-client -y
+#!/bin/bash
+
+# Actualiza paquetes e instala dependencias
+sudo apt update -y
+sudo apt install -y git mysql-client
+
+# Instala mysql-client si no existe
+if ! command -v mysql &>/dev/null; then
+  echo "MySQL client not found, installing..."
+  sudo apt update -y
+  sudo apt install -y mysql-client
+fi
+
+
+# Clona el repositorio desde la rama 'local'
 git clone -b local https://github.com/Roberto-1998/vprofile-project.git
-mysql -h ${rds-endpoint} -u ${dbuser} --password=${dbpass} accounts --ssl-mode=DISABLED < /home/ubuntu/vprofile-project/src/main/resources/db_backup.sql
+
+# Espera a que el clonado termine y verifica que el archivo existe
+if [ -f "/home/ubuntu/vprofile-project/src/main/resources/db_backup.sql" ]; then
+  # Ejecuta el script SQL contra el RDS
+  mysql -h ${rds-endpoint} -u ${dbuser} --password=${dbpass} accounts --ssl-mode=DISABLED < /home/ubuntu/vprofile-project/src/main/resources/db_backup.sql
+else
+  echo "❌ Archivo de respaldo no encontrado. Abortando."
+  exit 1
+fi
